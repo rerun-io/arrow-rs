@@ -31,7 +31,7 @@ use std::{
 #[allow(clippy::derive_partial_eq_without_eq)]
 
 mod gen {
-    include!("arrow.flight.protocol.rs");
+    tonic::include_proto!("arrow.flight.protocol");
 }
 
 pub mod flight_descriptor {

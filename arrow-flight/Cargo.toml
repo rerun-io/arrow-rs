@@ -29,22 +29,24 @@ license = "Apache-2.0"
 [dependencies]
 arrow = { path = "../arrow", version = "25.0.0", default-features = false, features = ["ipc"] }
 base64 = { version = "0.13", default-features = false }
-tonic = { version = "0.8", default-features = false, features = ["transport", "codegen", "prost"] }
+tonic = { version = "0.8", default-features = false, features = ["codegen", "prost"] }
 bytes = { version = "1", default-features = false }
 prost = { version = "0.11", default-features = false }
 prost-types = { version = "0.11.0", default-features = false, optional = true }
 prost-derive = { version = "0.11", default-features = false }
-tokio = { version = "1.0", default-features = false, features = ["macros", "rt", "rt-multi-thread"] }
-futures = { version = "0.3", default-features = false, features = ["alloc"]}
+tokio = { version = "1.0", default-features = false, features = ["macros", "rt"] }
+futures = { version = "0.3", default-features = false, features = ["alloc"] }
 
 [features]
-default = []
+default = ["transport"]
+transport = ["tonic/transport", "tonic-build/transport"]
 flight-sql-experimental = ["prost-types"]
 
 [dev-dependencies]
+tokio = { version = "1.0", default-features = false, features = ["macros", "rt", "rt-multi-thread"] }
 
 [build-dependencies]
-tonic-build = { version = "0.8", default-features = false, features = ["transport", "prost"] }
+tonic-build = { version = "0.8", default-features = false, features = ["prost"] }
 # Pin specific version of the tonic-build dependencies to avoid auto-generated
 # (and checked in) arrow.flight.protocol.rs from changing
 proc-macro2 = { version = ">1.0.30", default-features = false }

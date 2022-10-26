@@ -20,7 +20,7 @@ use prost::Message;
 
 mod gen {
     #![allow(clippy::all)]
-    include!("arrow.flight.protocol.sql.rs");
+    tonic::include_proto!("arrow.flight.protocol.sql");
 }
 
 pub use gen::ActionClosePreparedStatementRequest;
