@@ -221,6 +221,23 @@ impl<T: ByteArrayType> GenericByteArray<T> {
         }
     }
 
+    /// The number of byte arrays in this array, including nulls.
+    ///
+    /// ```
+    /// let array = StringArray::from(vec![Some("foo"), None, Some("bar")]);
+    /// assert_eq!(array.len(), 3);
+    /// ```
+    #[inline]
+    pub fn len(&self) -> usize {
+        self.offsets().len() - 1
+    }
+
+    /// Whether this array is empty (contains no elements, not even nulls).
+    #[inline]
+    pub fn is_empty(&self) -> bool {
+        self.len() == 0
+    }
+
     /// Deconstruct this array into its constituent parts
     pub fn into_parts(self) -> (OffsetBuffer<T::Offset>, Buffer, Option<NullBuffer>) {
         (self.value_offsets, self.value_data, self.nulls)
@@ -626,5 +643,11 @@ mod tests {
         );
 
         BinaryArray::new(offsets, non_ascii_data, None);
+    }
+
+    #[test]
+    fn string_array_len() {
+        let array = StringArray::from(vec![Some("foo"), None, Some("bar")]);
+        assert_eq!(array.len(), 3);
     }
 }
