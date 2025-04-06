@@ -241,6 +241,7 @@ impl Schema {
     }
 
     /// Sets the metadata of this `Schema` to be `metadata` and returns self
+    #[must_use]
     pub fn with_metadata(mut self, metadata: HashMap<String, String>) -> Self {
         self.metadata = metadata;
         self

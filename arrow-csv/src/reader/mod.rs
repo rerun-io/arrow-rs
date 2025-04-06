@@ -246,30 +246,35 @@ impl Format {
     /// Specify whether the CSV file has a header, defaults to `false`
     ///
     /// When `true`, the first row of the CSV file is treated as a header row
+    #[must_use]
     pub fn with_header(mut self, has_header: bool) -> Self {
         self.header = has_header;
         self
     }
 
     /// Specify a custom delimiter character, defaults to comma `','`
+    #[must_use]
     pub fn with_delimiter(mut self, delimiter: u8) -> Self {
         self.delimiter = Some(delimiter);
         self
     }
 
     /// Specify an escape character, defaults to `None`
+    #[must_use]
     pub fn with_escape(mut self, escape: u8) -> Self {
         self.escape = Some(escape);
         self
     }
 
     /// Specify a custom quote character, defaults to double quote `'"'`
+    #[must_use]
     pub fn with_quote(mut self, quote: u8) -> Self {
         self.quote = Some(quote);
         self
     }
 
     /// Specify a custom terminator character, defaults to CRLF
+    #[must_use]
     pub fn with_terminator(mut self, terminator: u8) -> Self {
         self.terminator = Some(terminator);
         self
@@ -278,12 +283,14 @@ impl Format {
     /// Specify a comment character, defaults to `None`
     ///
     /// Lines starting with this character will be ignored
+    #[must_use]
     pub fn with_comment(mut self, comment: u8) -> Self {
         self.comment = Some(comment);
         self
     }
 
     /// Provide a regex to match null values, defaults to `^$`
+    #[must_use]
     pub fn with_null_regex(mut self, null_regex: Regex) -> Self {
         self.null_regex = NullRegex(Some(null_regex));
         self
@@ -295,6 +302,7 @@ impl Format {
     /// When set to true then it will allow records with less than the expected number of columns
     /// and fill the missing columns with nulls. If the record's schema is not nullable, then it
     /// will still return an error.
+    #[must_use]
     pub fn with_truncated_rows(mut self, allow: bool) -> Self {
         self.truncated_rows = allow;
         self
@@ -1087,54 +1095,63 @@ impl ReaderBuilder {
     }
 
     /// Set whether the CSV file has a header
+    #[must_use]
     pub fn with_header(mut self, has_header: bool) -> Self {
         self.format.header = has_header;
         self
     }
 
     /// Overrides the [Format] of this [ReaderBuilder]
+    #[must_use]
     pub fn with_format(mut self, format: Format) -> Self {
         self.format = format;
         self
     }
 
     /// Set the CSV file's column delimiter as a byte character
+    #[must_use]
     pub fn with_delimiter(mut self, delimiter: u8) -> Self {
         self.format.delimiter = Some(delimiter);
         self
     }
 
     /// Set the given character as the CSV file's escape character
+    #[must_use]
     pub fn with_escape(mut self, escape: u8) -> Self {
         self.format.escape = Some(escape);
         self
     }
 
     /// Set the given character as the CSV file's quote character, by default it is double quote
+    #[must_use]
     pub fn with_quote(mut self, quote: u8) -> Self {
         self.format.quote = Some(quote);
         self
     }
 
     /// Provide a custom terminator character, defaults to CRLF
+    #[must_use]
     pub fn with_terminator(mut self, terminator: u8) -> Self {
         self.format.terminator = Some(terminator);
         self
     }
 
     /// Provide a comment character, lines starting with this character will be ignored
+    #[must_use]
     pub fn with_comment(mut self, comment: u8) -> Self {
         self.format.comment = Some(comment);
         self
     }
 
     /// Provide a regex to match null values, defaults to `^$`
+    #[must_use]
     pub fn with_null_regex(mut self, null_regex: Regex) -> Self {
         self.format.null_regex = NullRegex(Some(null_regex));
         self
     }
 
     /// Set the batch size (number of records to load at one time)
+    #[must_use]
     pub fn with_batch_size(mut self, batch_size: usize) -> Self {
         self.batch_size = batch_size;
         self
@@ -1142,12 +1159,14 @@ impl ReaderBuilder {
 
     /// Set the bounds over which to scan the reader.
     /// `start` and `end` are line numbers.
+    #[must_use]
     pub fn with_bounds(mut self, start: usize, end: usize) -> Self {
         self.bounds = Some((start, end));
         self
     }
 
     /// Set the reader's column projection
+    #[must_use]
     pub fn with_projection(mut self, projection: Vec<usize>) -> Self {
         self.projection = Some(projection);
         self
@@ -1159,6 +1178,7 @@ impl ReaderBuilder {
     /// When set to true then it will allow records with less than the expected number of columns
     /// and fill the missing columns with nulls. If the record's schema is not nullable, then it
     /// will still return an error.
+    #[must_use]
     pub fn with_truncated_rows(mut self, allow: bool) -> Self {
         self.format.truncated_rows = allow;
         self

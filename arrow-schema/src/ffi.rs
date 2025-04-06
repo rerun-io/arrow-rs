@@ -161,18 +161,21 @@ impl FFI_ArrowSchema {
     }
 
     /// Set the name of the schema
+    #[must_use]
     pub fn with_name(mut self, name: &str) -> Result<Self, ArrowError> {
         self.name = CString::new(name).unwrap().into_raw();
         Ok(self)
     }
 
     /// Set the flags of the schema
+    #[must_use]
     pub fn with_flags(mut self, flags: Flags) -> Result<Self, ArrowError> {
         self.flags = flags.bits();
         Ok(self)
     }
 
     /// Add metadata to the schema
+    #[must_use]
     pub fn with_metadata<I, S>(mut self, metadata: I) -> Result<Self, ArrowError>
     where
         I: IntoIterator<Item = (S, S)>,

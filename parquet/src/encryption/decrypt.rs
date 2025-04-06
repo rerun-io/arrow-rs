@@ -446,20 +446,20 @@ impl DecryptionPropertiesBuilder {
     /// Specify the expected AAD prefix to be used for decryption.
     /// This must be set if the file was written with an AAD prefix and the
     /// prefix is not stored in the file metadata.
-    pub fn with_aad_prefix(mut self, value: Vec<u8>) -> Self {
+    #[must_use]pub fn with_aad_prefix(mut self, value: Vec<u8>) -> Self {
         self.aad_prefix = Some(value);
         self
     }
 
     /// Specify the decryption key to use for a column
-    pub fn with_column_key(mut self, column_name: &str, decryption_key: Vec<u8>) -> Self {
+    #[must_use]pub fn with_column_key(mut self, column_name: &str, decryption_key: Vec<u8>) -> Self {
         self.column_keys
             .insert(column_name.to_string(), decryption_key);
         self
     }
 
     /// Specify multiple column decryption keys
-    pub fn with_column_keys(mut self, column_names: Vec<&str>, keys: Vec<Vec<u8>>) -> Result<Self> {
+    #[must_use]pub fn with_column_keys(mut self, column_names: Vec<&str>, keys: Vec<Vec<u8>>) -> Result<Self> {
         if column_names.len() != keys.len() {
             return Err(general_err!(
                 "The number of column names ({}) does not match the number of keys ({})",

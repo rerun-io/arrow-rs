@@ -250,6 +250,7 @@ impl WriterBuilder {
     ///
     /// Default is to skip nulls (set to `false`). If `struct_mode == ListOnly`,
     /// nulls will be written explicitly regardless of this setting.
+    #[must_use]
     pub fn with_explicit_nulls(mut self, explicit_nulls: bool) -> Self {
         self.0 = self.0.with_explicit_nulls(explicit_nulls);
         self
@@ -265,6 +266,7 @@ impl WriterBuilder {
     /// enum documentation. Default is to use `ObjectOnly`. If this is set to
     /// `ListOnly`, nulls will be written explicitly regardless of the
     /// `explicit_nulls` setting.
+    #[must_use]
     pub fn with_struct_mode(mut self, struct_mode: StructMode) -> Self {
         self.0 = self.0.with_struct_mode(struct_mode);
         self
@@ -274,6 +276,7 @@ impl WriterBuilder {
     ///
     /// This can be used to override how some types are encoded or to provide
     /// a fallback for types that are not supported by the default encoder.
+    #[must_use]
     pub fn with_encoder_factory(mut self, factory: Arc<dyn EncoderFactory>) -> Self {
         self.0 = self.0.with_encoder_factory(factory);
         self

@@ -194,12 +194,14 @@ impl FlightDataEncoderBuilder {
     ///
     /// The size is approximate because of the additional encoding
     /// overhead on top of the underlying data buffers themselves.
+    #[must_use]
     pub fn with_max_flight_data_size(mut self, max_flight_data_size: usize) -> Self {
         self.max_flight_data_size = max_flight_data_size;
         self
     }
 
     /// Set [`DictionaryHandling`] for encoder
+    #[must_use]
     pub fn with_dictionary_handling(mut self, dictionary_handling: DictionaryHandling) -> Self {
         self.dictionary_handling = dictionary_handling;
         self
@@ -208,12 +210,14 @@ impl FlightDataEncoderBuilder {
     /// Specify application specific metadata included in the
     /// [`FlightData::app_metadata`] field of the the first Schema
     /// message
+    #[must_use]
     pub fn with_metadata(mut self, app_metadata: Bytes) -> Self {
         self.app_metadata = app_metadata;
         self
     }
 
     /// Set the [`IpcWriteOptions`] used to encode the [`RecordBatch`]es for transport.
+    #[must_use]
     pub fn with_options(mut self, options: IpcWriteOptions) -> Self {
         self.options = options;
         self
@@ -223,12 +227,14 @@ impl FlightDataEncoderBuilder {
     /// is not specified, an encoded Schema message will be sent when
     /// the first [`RecordBatch`], if any, is encoded. Some clients
     /// expect a Schema message even if there is no data sent.
+    #[must_use]
     pub fn with_schema(mut self, schema: SchemaRef) -> Self {
         self.schema = Some(schema);
         self
     }
 
     /// Specify a flight descriptor in the first FlightData message.
+    #[must_use]
     pub fn with_flight_descriptor(mut self, descriptor: Option<FlightDescriptor>) -> Self {
         self.descriptor = descriptor;
         self

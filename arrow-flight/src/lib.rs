@@ -489,12 +489,14 @@ impl FlightData {
     }
 
     /// Add a [`FlightDescriptor`] describing the data
+    #[must_use]
     pub fn with_descriptor(mut self, flight_descriptor: FlightDescriptor) -> Self {
         self.flight_descriptor = Some(flight_descriptor);
         self
     }
 
     /// Add a data header
+    #[must_use]
     pub fn with_data_header(mut self, data_header: impl Into<Bytes>) -> Self {
         self.data_header = data_header.into();
         self
@@ -503,12 +505,14 @@ impl FlightData {
     /// Add a data body. See [`IpcDataGenerator`] to create this data.
     ///
     /// [`IpcDataGenerator`]: arrow_ipc::writer::IpcDataGenerator
+    #[must_use]
     pub fn with_data_body(mut self, data_body: impl Into<Bytes>) -> Self {
         self.data_body = data_body.into();
         self
     }
 
     /// Add optional application specific metadata to the message
+    #[must_use]
     pub fn with_app_metadata(mut self, app_metadata: impl Into<Bytes>) -> Self {
         self.app_metadata = app_metadata.into();
         self
@@ -600,24 +604,28 @@ impl FlightInfo {
     }
 
     /// Add specific a endpoint for fetching the data
+    #[must_use]
     pub fn with_endpoint(mut self, endpoint: FlightEndpoint) -> Self {
         self.endpoint.push(endpoint);
         self
     }
 
     /// Add a [`FlightDescriptor`] describing what this data is
+    #[must_use]
     pub fn with_descriptor(mut self, flight_descriptor: FlightDescriptor) -> Self {
         self.flight_descriptor = Some(flight_descriptor);
         self
     }
 
     /// Set the number of records in the result, if known
+    #[must_use]
     pub fn with_total_records(mut self, total_records: i64) -> Self {
         self.total_records = total_records;
         self
     }
 
     /// Set the number of bytes in the result, if known
+    #[must_use]
     pub fn with_total_bytes(mut self, total_bytes: i64) -> Self {
         self.total_bytes = total_bytes;
         self
@@ -626,12 +634,14 @@ impl FlightInfo {
     /// Specify if the response is [ordered] across endpoints
     ///
     /// [ordered]: https://github.com/apache/arrow-rs/blob/17ca4d51d0490f9c65f5adde144f677dbc8300e7/format/Flight.proto#L269-L275
+    #[must_use]
     pub fn with_ordered(mut self, ordered: bool) -> Self {
         self.ordered = ordered;
         self
     }
 
     /// Add optional application specific metadata to the message
+    #[must_use]
     pub fn with_app_metadata(mut self, app_metadata: impl Into<Bytes>) -> Self {
         self.app_metadata = app_metadata.into();
         self
@@ -665,6 +675,7 @@ impl PollInfo {
     }
 
     /// Add the current available results for the poll call as a [`FlightInfo`]
+    #[must_use]
     pub fn with_info(mut self, info: FlightInfo) -> Self {
         self.info = Some(info);
         self
@@ -672,6 +683,7 @@ impl PollInfo {
 
     /// Add a [`FlightDescriptor`] that the client should use for the next poll call,
     /// if the query is not yet complete
+    #[must_use]
     pub fn with_descriptor(mut self, flight_descriptor: FlightDescriptor) -> Self {
         self.flight_descriptor = Some(flight_descriptor);
         self
@@ -690,6 +702,7 @@ impl PollInfo {
     }
 
     /// Specify expiration time for this request
+    #[must_use]
     pub fn with_expiration_time(mut self, expiration_time: Timestamp) -> Self {
         self.expiration_time = Some(expiration_time);
         self
@@ -789,6 +802,7 @@ impl FlightEndpoint {
     }
 
     /// Set the [`Ticket`] used to retrieve data from the endpoint
+    #[must_use]
     pub fn with_ticket(mut self, ticket: Ticket) -> Self {
         self.ticket = Some(ticket);
         self
@@ -805,18 +819,21 @@ impl FlightEndpoint {
     /// * generated.
     /// ```
     /// [Flight Spec]: https://github.com/apache/arrow-rs/blob/17ca4d51d0490f9c65f5adde144f677dbc8300e7/format/Flight.proto#L307C2-L312
+    #[must_use]
     pub fn with_location(mut self, uri: impl Into<String>) -> Self {
         self.location.push(Location { uri: uri.into() });
         self
     }
 
     /// Specify expiration time for this stream
+    #[must_use]
     pub fn with_expiration_time(mut self, expiration_time: Timestamp) -> Self {
         self.expiration_time = Some(expiration_time);
         self
     }
 
     /// Add optional application specific metadata to the message
+    #[must_use]
     pub fn with_app_metadata(mut self, app_metadata: impl Into<Bytes>) -> Self {
         self.app_metadata = app_metadata.into();
         self

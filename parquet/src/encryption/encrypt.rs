@@ -199,13 +199,13 @@ impl EncryptionPropertiesBuilder {
     }
 
     /// Set if the footer should be stored in plaintext (not encrypted). Defaults to false.
-    pub fn with_plaintext_footer(mut self, plaintext_footer: bool) -> Self {
+    #[must_use]pub fn with_plaintext_footer(mut self, plaintext_footer: bool) -> Self {
         self.encrypt_footer = !plaintext_footer;
         self
     }
 
     /// Set retrieval metadata of key used for encryption of footer and (possibly) columns
-    pub fn with_footer_key_metadata(mut self, metadata: Vec<u8>) -> Self {
+    #[must_use]pub fn with_footer_key_metadata(mut self, metadata: Vec<u8>) -> Self {
         self.footer_key = self.footer_key.with_metadata(metadata);
         self
     }
@@ -213,7 +213,7 @@ impl EncryptionPropertiesBuilder {
     /// Set the key used for encryption of a column. Note that if no column keys are configured then
     /// all columns will be encrypted with the footer key.
     /// If any column keys are configured then only the columns with a key will be encrypted.
-    pub fn with_column_key(mut self, column_name: &str, key: Vec<u8>) -> Self {
+    #[must_use]pub fn with_column_key(mut self, column_name: &str, key: Vec<u8>) -> Self {
         self.column_keys
             .insert(column_name.to_string(), EncryptionKey::new(key));
         self
@@ -241,7 +241,7 @@ impl EncryptionPropertiesBuilder {
     /// with_column_key but for multiple columns. This will add column keys provided to the
     /// existing column keys. If column keys were already provided for some columns, the new keys
     /// will overwrite the old ones.
-    pub fn with_column_keys(mut self, column_names: Vec<&str>, keys: Vec<Vec<u8>>) -> Result<Self> {
+    #[must_use]pub fn with_column_keys(mut self, column_names: Vec<&str>, keys: Vec<Vec<u8>>) -> Result<Self> {
         if column_names.len() != keys.len() {
             return Err(general_err!(
                 "The number of column names ({}) does not match the number of keys ({})",
@@ -260,14 +260,14 @@ impl EncryptionPropertiesBuilder {
     /// older versions of the file or from other partition files in the same data set (table).
     /// These bytes are optionally passed by a writer upon file creation. When not specified, no
     /// AAD prefix is used.
-    pub fn with_aad_prefix(mut self, aad_prefix: Vec<u8>) -> Self {
+    #[must_use]pub fn with_aad_prefix(mut self, aad_prefix: Vec<u8>) -> Self {
         self.aad_prefix = Some(aad_prefix);
         self
     }
 
     /// Should the AAD prefix be stored in the file. If false, readers will need to provide the
     /// AAD prefix to be able to decrypt data. Defaults to false.
-    pub fn with_aad_prefix_storage(mut self, store_aad_prefix: bool) -> Self {
+    #[must_use]pub fn with_aad_prefix_storage(mut self, store_aad_prefix: bool) -> Self {
         self.store_aad_prefix = store_aad_prefix;
         self
     }

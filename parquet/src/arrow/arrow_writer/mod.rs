@@ -474,6 +474,7 @@ struct ArrowPageWriter {
 
 impl ArrowPageWriter {
     #[cfg(feature = "encryption")]
+    #[must_use]
     pub fn with_encryptor(mut self, page_encryptor: Option<PageEncryptor>) -> Self {
         self.page_encryptor = page_encryptor;
         self

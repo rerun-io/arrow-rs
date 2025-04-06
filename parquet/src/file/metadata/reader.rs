@@ -127,6 +127,7 @@ impl ParquetMetaDataReader {
     /// Enable or disable reading the Parquet [ColumnIndex] structure.
     ///
     /// [ColumnIndex]:  https://github.com/apache/parquet-format/blob/master/PageIndex.md
+    #[must_use]
     pub fn with_column_indexes(mut self, val: bool) -> Self {
         self.column_index = val;
         self
@@ -135,6 +136,7 @@ impl ParquetMetaDataReader {
     /// Enable or disable reading the Parquet [OffsetIndex] structure.
     ///
     /// [OffsetIndex]:  https://github.com/apache/parquet-format/blob/master/PageIndex.md
+    #[must_use]
     pub fn with_offset_indexes(mut self, val: bool) -> Self {
         self.offset_index = val;
         self
@@ -151,6 +153,7 @@ impl ParquetMetaDataReader {
     /// to fully decode the [`ParquetMetaData`], which can reduce the number of fetch requests and
     /// reduce latency. Setting `prefetch` too small will not trigger an error, but will result
     /// in extra fetches being performed.
+    #[must_use]
     pub fn with_prefetch_hint(mut self, prefetch: Option<usize>) -> Self {
         self.prefetch_hint = prefetch;
         self

@@ -41,18 +41,21 @@ pub struct EncoderOptions {
 
 impl EncoderOptions {
     /// Set whether to include nulls in the output or elide them.
+    #[must_use]
     pub fn with_explicit_nulls(mut self, explicit_nulls: bool) -> Self {
         self.explicit_nulls = explicit_nulls;
         self
     }
 
     /// Set whether to encode structs as JSON objects or JSON arrays of their values.
+    #[must_use]
     pub fn with_struct_mode(mut self, struct_mode: StructMode) -> Self {
         self.struct_mode = struct_mode;
         self
     }
 
     /// Set an optional hook for customizing encoding behavior.
+    #[must_use]
     pub fn with_encoder_factory(mut self, encoder_factory: Arc<dyn EncoderFactory>) -> Self {
         self.encoder_factory = Some(encoder_factory);
         self

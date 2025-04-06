@@ -745,11 +745,13 @@ impl RecordBatchOptions {
         }
     }
     /// Sets the row_count of RecordBatchOptions and returns self
+    #[must_use]
     pub fn with_row_count(mut self, row_count: Option<usize>) -> Self {
         self.row_count = row_count;
         self
     }
     /// Sets the match_field_names of RecordBatchOptions and returns self
+    #[must_use]
     pub fn with_match_field_names(mut self, match_field_names: bool) -> Self {
         self.match_field_names = match_field_names;
         self

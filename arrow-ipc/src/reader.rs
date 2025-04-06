@@ -435,6 +435,7 @@ impl<'a> RecordBatchDecoder<'a> {
     ///
     /// If set, the projection is the list  of column indices
     /// that will be read
+    #[must_use]
     pub fn with_projection(mut self, projection: Option<&'a [usize]>) -> Self {
         self.projection = projection;
         self
@@ -445,6 +446,7 @@ impl<'a> RecordBatchDecoder<'a> {
     /// If true, buffers must be aligned appropriately or error will
     /// result. If false, buffers will be copied to aligned buffers
     /// if necessary.
+    #[must_use]
     pub fn with_require_alignment(mut self, require_alignment: bool) -> Self {
         self.require_alignment = require_alignment;
         self
@@ -833,6 +835,7 @@ impl FileDecoder {
     }
 
     /// Specify a projection
+    #[must_use]
     pub fn with_projection(mut self, projection: Vec<usize>) -> Self {
         self.projection = Some(projection);
         self
@@ -850,6 +853,7 @@ impl FileDecoder {
     /// properly aligned. (Properly aligned array data will remain zero-copy.)
     /// Under the hood it will use [`arrow_data::ArrayDataBuilder::build_aligned`] to construct
     /// [`arrow_data::ArrayData`].
+    #[must_use]
     pub fn with_require_alignment(mut self, require_alignment: bool) -> Self {
         self.require_alignment = require_alignment;
         self
@@ -972,6 +976,7 @@ impl FileReaderBuilder {
     }
 
     /// Optional projection for which columns to load (zero-based column indices).
+    #[must_use]
     pub fn with_projection(mut self, projection: Vec<usize>) -> Self {
         self.projection = Some(projection);
         self
@@ -989,6 +994,7 @@ impl FileReaderBuilder {
     /// If you need to ingest a trusted file with a massive number of fields and/or
     /// metadata key-value pairs and are facing the error `"Unable to get root as
     /// footer: TooManyTables"` then increase this parameter as necessary.
+    #[must_use]
     pub fn with_max_footer_fb_tables(mut self, max_footer_fb_tables: usize) -> Self {
         self.max_footer_fb_tables = max_footer_fb_tables;
         self
@@ -1006,6 +1012,7 @@ impl FileReaderBuilder {
     /// If you need to ingest a trusted file with a deeply nested field and are facing the
     /// error `"Unable to get root as footer: DepthLimitReached"` then increase this
     /// parameter as necessary.
+    #[must_use]
     pub fn with_max_footer_fb_depth(mut self, max_footer_fb_depth: usize) -> Self {
         self.max_footer_fb_depth = max_footer_fb_depth;
         self
@@ -1173,7 +1180,7 @@ impl<R: Read + Seek> FileReader<R> {
     /// Try to create a new file reader.
     ///
     /// There is no internal buffering. If buffered reads are needed you likely want to use
-    /// [`FileReader::try_new_buffered`] instead.    
+    /// [`FileReader::try_new_buffered`] instead.
     ///
     /// # Errors
     ///

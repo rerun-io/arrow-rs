@@ -146,12 +146,14 @@ impl SortOptions {
     }
 
     /// Set this sort options to sort descending if argument is true
+    #[must_use]
     pub fn with_descending(mut self, descending: bool) -> Self {
         self.descending = descending;
         self
     }
 
     /// Set this sort options to sort nulls first if argument is true
+    #[must_use]
     pub fn with_nulls_first(mut self, nulls_first: bool) -> Self {
         self.nulls_first = nulls_first;
         self

@@ -304,6 +304,7 @@ impl Field {
     }
 
     /// Sets the metadata of this `Field` to be `metadata` and returns self
+    #[must_use]
     pub fn with_metadata(mut self, metadata: HashMap<String, String>) -> Self {
         self.set_metadata(metadata);
         self
@@ -330,6 +331,7 @@ impl Field {
     ///
     /// assert_eq!(field.name(), "c2");
     /// ```
+    #[must_use]
     pub fn with_name(mut self, name: impl Into<String>) -> Self {
         self.name = name.into();
         self
@@ -350,6 +352,7 @@ impl Field {
     ///
     /// assert_eq!(field.data_type(), &DataType::Utf8);
     /// ```
+    #[must_use]
     pub fn with_data_type(mut self, data_type: DataType) -> Self {
         self.data_type = data_type;
         self
@@ -497,6 +500,7 @@ impl Field {
     ///
     /// This calls [`Field::try_with_extension_type`] and panics when it
     /// returns an error.
+    #[must_use]
     pub fn with_extension_type<E: ExtensionType>(mut self, extension_type: E) -> Self {
         self.try_with_extension_type(extension_type)
             .unwrap_or_else(|e| panic!("{e}"));
@@ -531,6 +535,7 @@ impl Field {
     ///
     /// assert_eq!(field.is_nullable(), true);
     /// ```
+    #[must_use]
     pub fn with_nullable(mut self, nullable: bool) -> Self {
         self.nullable = nullable;
         self
@@ -618,6 +623,7 @@ impl Field {
     /// Does nothing if this is not a dictionary type.
     ///
     /// See [`Field::dict_is_ordered`] for more information.
+    #[must_use]
     pub fn with_dict_is_ordered(mut self, dict_is_ordered: bool) -> Self {
         if matches!(self.data_type, DataType::Dictionary(_, _)) {
             self.dict_is_ordered = dict_is_ordered;

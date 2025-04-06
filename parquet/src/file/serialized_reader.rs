@@ -120,6 +120,7 @@ impl ReadOptionsBuilder {
 
     /// Add a predicate on row group metadata to the reading option,
     /// Filter only row groups that match the predicate criteria
+    #[must_use]
     pub fn with_predicate(mut self, predicate: ReadGroupPredicate) -> Self {
         self.predicates.push(predicate);
         self
@@ -127,6 +128,7 @@ impl ReadOptionsBuilder {
 
     /// Add a range predicate on filtering row groups if their midpoints are within
     /// the Closed-Open range `[start..end) {x | start <= x < end}`
+    #[must_use]
     pub fn with_range(mut self, start: i64, end: i64) -> Self {
         assert!(start < end);
         let predicate = move |rg: &RowGroupMetaData, _: usize| {
@@ -141,12 +143,14 @@ impl ReadOptionsBuilder {
     /// "[Column Index] Layout to Support Page Skipping"
     ///
     /// [Column Index]: https://github.com/apache/parquet-format/blob/master/PageIndex.md
+    #[must_use]
     pub fn with_page_index(mut self) -> Self {
         self.enable_page_index = true;
         self
     }
 
     /// Set the [`ReaderProperties`] configuration.
+    #[must_use]
     pub fn with_reader_properties(mut self, properties: ReaderProperties) -> Self {
         self.props = Some(properties);
         self

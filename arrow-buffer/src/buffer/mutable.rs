@@ -145,6 +145,7 @@ impl MutableBuffer {
     /// This is useful when one wants to clear (or set) the bits and then manipulate
     /// the buffer directly (e.g., modifying the buffer by holding a mutable reference
     /// from `data_mut()`).
+    #[must_use]
     pub fn with_bitset(mut self, end: usize, val: bool) -> Self {
         assert!(end <= self.layout.size());
         let v = if val { 255 } else { 0 };

@@ -55,6 +55,7 @@ impl TreeBuilder {
     }
 
     /// Sets batch size for this tree builder.
+    #[must_use]
     pub fn with_batch_size(mut self, batch_size: usize) -> Self {
         self.batch_size = batch_size;
         self
@@ -756,6 +757,7 @@ impl<'a> RowIter<'a> {
     }
 
     /// Sets batch size for this row iter.
+    #[must_use]
     pub fn with_batch_size(mut self, batch_size: usize) -> Self {
         self.tree_builder = self.tree_builder.with_batch_size(batch_size);
         self

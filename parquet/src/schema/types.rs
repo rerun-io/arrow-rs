@@ -605,6 +605,7 @@ impl<'a> GroupTypeBuilder<'a> {
     }
 
     /// Sets [`Repetition`] for this field and returns itself.
+    #[must_use]
     pub fn with_repetition(mut self, repetition: Repetition) -> Self {
         self.repetition = Some(repetition);
         self

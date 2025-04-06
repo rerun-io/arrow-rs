@@ -1222,6 +1222,7 @@ impl<'a> StatisticsConverter<'a> {
     ///
     /// Both parquet-java and parquet-cpp store null counts as 0 when there are
     /// no nulls, and don't write unknown values to the null count field.
+    #[must_use]
     pub fn with_missing_null_counts_as_zero(mut self, missing_null_counts_as_zero: bool) -> Self {
         self.missing_null_counts_as_zero = missing_null_counts_as_zero;
         self

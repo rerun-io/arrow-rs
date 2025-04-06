@@ -257,6 +257,7 @@ impl WriterBuilder {
     }
 
     /// Set whether to write the CSV file with a header
+    #[must_use]
     pub fn with_header(mut self, header: bool) -> Self {
         self.has_header = header;
         self
@@ -268,6 +269,7 @@ impl WriterBuilder {
     }
 
     /// Set the CSV file's column delimiter as a byte character
+    #[must_use]
     pub fn with_delimiter(mut self, delimiter: u8) -> Self {
         self.delimiter = delimiter;
         self
@@ -279,6 +281,7 @@ impl WriterBuilder {
     }
 
     /// Set the CSV file's quote character as a byte character
+    #[must_use]
     pub fn with_quote(mut self, quote: u8) -> Self {
         self.quote = quote;
         self
@@ -296,6 +299,7 @@ impl WriterBuilder {
     ///
     /// By default, writing these idiosyncratic escapes is disabled, and is
     /// only used when `double_quote` is disabled.
+    #[must_use]
     pub fn with_escape(mut self, escape: u8) -> Self {
         self.escape = escape;
         self
@@ -313,6 +317,7 @@ impl WriterBuilder {
     ///
     /// When disabled, quotes are escaped with the escape character (which
     /// is `\\` by default).
+    #[must_use]
     pub fn with_double_quote(mut self, double_quote: bool) -> Self {
         self.double_quote = double_quote;
         self
@@ -324,6 +329,7 @@ impl WriterBuilder {
     }
 
     /// Set the CSV file's date format
+    #[must_use]
     pub fn with_date_format(mut self, format: String) -> Self {
         self.date_format = Some(format);
         self
@@ -335,6 +341,7 @@ impl WriterBuilder {
     }
 
     /// Set the CSV file's datetime format
+    #[must_use]
     pub fn with_datetime_format(mut self, format: String) -> Self {
         self.datetime_format = Some(format);
         self
@@ -346,6 +353,7 @@ impl WriterBuilder {
     }
 
     /// Set the CSV file's time format
+    #[must_use]
     pub fn with_time_format(mut self, format: String) -> Self {
         self.time_format = Some(format);
         self
@@ -357,6 +365,7 @@ impl WriterBuilder {
     }
 
     /// Set the CSV file's timestamp format
+    #[must_use]
     pub fn with_timestamp_format(mut self, format: String) -> Self {
         self.timestamp_format = Some(format);
         self
@@ -368,6 +377,7 @@ impl WriterBuilder {
     }
 
     /// Set the CSV file's timestamp tz format
+    #[must_use]
     pub fn with_timestamp_tz_format(mut self, tz_format: String) -> Self {
         self.timestamp_tz_format = Some(tz_format);
         self
@@ -379,6 +389,7 @@ impl WriterBuilder {
     }
 
     /// Set the value to represent null in output
+    #[must_use]
     pub fn with_null(mut self, null_value: String) -> Self {
         self.null_value = Some(null_value);
         self

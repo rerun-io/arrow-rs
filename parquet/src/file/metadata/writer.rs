@@ -198,22 +198,26 @@ impl<'a, W: Write> ThriftMetadataWriter<'a, W> {
         }
     }
 
+    #[must_use]
     pub fn with_column_indexes(mut self, column_indexes: &'a [Vec<Option<ColumnIndex>>]) -> Self {
         self.column_indexes = Some(column_indexes);
         self
     }
 
+    #[must_use]
     pub fn with_offset_indexes(mut self, offset_indexes: &'a [Vec<Option<OffsetIndex>>]) -> Self {
         self.offset_indexes = Some(offset_indexes);
         self
     }
 
+    #[must_use]
     pub fn with_key_value_metadata(mut self, key_value_metadata: Vec<KeyValue>) -> Self {
         self.key_value_metadata = Some(key_value_metadata);
         self
     }
 
     #[cfg(feature = "encryption")]
+    #[must_use]
     pub fn with_file_encryptor(mut self, file_encryptor: Option<Arc<FileEncryptor>>) -> Self {
         self.object_writer = self.object_writer.with_file_encryptor(file_encryptor);
         self

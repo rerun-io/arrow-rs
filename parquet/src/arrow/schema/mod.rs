@@ -316,6 +316,7 @@ impl<'a> ArrowSchemaConverter<'a> {
     /// [`Map`]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#maps
     /// [corresponding Parquet type]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#date
     ///
+    #[must_use]
     pub fn with_coerce_types(mut self, coerce_types: bool) -> Self {
         self.coerce_types = coerce_types;
         self

@@ -169,6 +169,7 @@ impl IpcWriteOptions {
         note = "The ability to preserve dictionary IDs will be removed. With it, all functions related to it."
     )]
     #[allow(deprecated)]
+    #[must_use]
     pub fn with_preserve_dict_id(mut self, preserve_dict_id: bool) -> Self {
         self.preserve_dict_id = preserve_dict_id;
         self

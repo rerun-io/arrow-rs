@@ -104,6 +104,7 @@ impl StreamDecoder {
     /// properly aligned. (Properly aligned array data will remain zero-copy.)
     /// Under the hood it will use [`arrow_data::ArrayDataBuilder::build_aligned`] to construct
     /// [`arrow_data::ArrayData`].
+    #[must_use]
     pub fn with_require_alignment(mut self, require_alignment: bool) -> Self {
         self.require_alignment = require_alignment;
         self
