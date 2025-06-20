@@ -1406,9 +1406,7 @@ impl<R: Read> StreamReader<R> {
         let mut meta_buffer = vec![0; meta_len as usize];
         reader.read_exact(&mut meta_buffer)?;
 
-        let message = crate::root_as_message(meta_buffer.as_slice()).map_err(|err| {
-            ArrowError::ParseError(format!("Unable to get root as message: {err:?}"))
-        })?;
+        let message = unsafe { crate::root_as_message_unchecked(meta_buffer.as_slice()) };
         // message header is a Schema, so read it
         let ipc_schema: crate::Schema = message.header_as_schema().ok_or_else(|| {
             ArrowError::ParseError("Unable to read IPC message as schema".to_string())
