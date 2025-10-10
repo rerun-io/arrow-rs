@@ -20,6 +20,7 @@ use crate::{make_array, new_null_array, Array, ArrayRef, RecordBatch};
 use arrow_buffer::{BooleanBuffer, Buffer, NullBuffer};
 use arrow_data::{ArrayData, ArrayDataBuilder};
 use arrow_schema::{ArrowError, DataType, Field, FieldRef, Fields};
+use core::panic;
 use std::sync::Arc;
 use std::{any::Any, ops::Index};
 
@@ -108,7 +109,9 @@ impl StructArray {
         arrays: Vec<ArrayRef>,
         nulls: Option<NullBuffer>,
     ) -> Result<Self, ArrowError> {
-        let len = arrays.first().map(|x| x.len()).ok_or_else(||ArrowError::InvalidArgumentError("use StructArray::try_new_with_length or StructArray::new_empty_fields to create a struct array with no fields so that the length can be set correctly".to_string()))?;
+        println!("Call new");
+        panic!("Call new");
+        let len = arrays.first().map(|x| x.len()).ok_or_else(||ArrowError::InvalidArgumentError("use StructArray::try_new_with_length or StructArray::new_empty_fields to create a struct array with no fields so that the length can be set correctly".to_string())).expect("Failed to get length");
 
         Self::try_new_with_length(fields, arrays, nulls, len)
     }
